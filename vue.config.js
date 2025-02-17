@@ -6,8 +6,8 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // Import CopyWebpackPlugin
 
 module.exports = {
-  publicPath: '/tommella90-website/',
-  configureWebpack: {
+    publicPath: '/',
+    configureWebpack: {
       plugins: [
           new CopyWebpackPlugin({
               patterns: [
