@@ -37,9 +37,7 @@
   </div>
 </template>
 
-
-  
-  <script>
+<script>
   import axios from 'axios';
   
   export default {
@@ -50,7 +48,7 @@
       };
     },
     created() {
-      this.fetchEducations();
+      this.fetchEducations(); // This is fine as it is
     },
     computed: {
       filteredEducations() {
@@ -62,16 +60,18 @@
         console.log('VUE_APP_API_URL:', process.env.VUE_APP_API_URL);
 
         try {
-          const response = await axios.get("https://tommella-general-storage-83d44de1134b.herokuapp.com/education");
+          // Use the environment variable here
+          const apiUrl = `${process.env.VUE_APP_API_URL}education`;
+          const response = await axios.get(apiUrl);
           this.educations = response.data;
         } catch (error) {
-          console.error(error);
+          console.error('Error fetching educations:', error);
         }
       }
     }
   };
-  </script>
-  
+</script>
+
 
   <style scoped>
 .education {

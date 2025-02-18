@@ -39,7 +39,7 @@
 
 
   
-  <script>
+<script>
   import axios from 'axios';
   
   export default {
@@ -62,15 +62,17 @@
         console.log('VUE_APP_API_URL:', process.env.VUE_APP_API_URL);
 
         try {
-          const response = await axios.get("https://tommella-general-storage-83d44de1134b.herokuapp.com/experience");
+          // Use the environment variable for the base URL
+          const apiUrl = `${process.env.VUE_APP_API_URL}experience`;
+          const response = await axios.get(apiUrl);
           this.experiences = response.data;
         } catch (error) {
-          console.error(error);
+          console.error('Error fetching experiences:', error);
         }
       }
     }
   };
-  </script>
+</script>
   
 
   <style scoped>
