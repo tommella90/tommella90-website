@@ -2,20 +2,15 @@
   <div class="experience">
     <h1>EXPERIENCES</h1>
     <ul v-if="filteredexperiences.length">
-
       <li v-for="experience in filteredexperiences" :key="experience.id" class="experience-item">
         <div class="experience-body">
-
           <div class="experience-image">
             <img 
               :src="experience.image_url"
               :alt="experience.title"
               class="experience-image"
             />
-
           </div>
-
-          <!-- Wrap the experience content -->
           <div class="experience-content">
             <div class="experience-header">
               <h2>{{ experience.title }} - {{ experience.institution }}</h2>
@@ -33,104 +28,85 @@
       </li>
     </ul>
     <p v-else>No experience available.</p>
-    <button v-if="!showAll && experiences.length > 3" @click="showAll = true">Show All</button>
+    <button v-if="experience.length > 3" @click="toggleShowAll">{{ showAll ? 'Show Less' : 'Show All' }}</button>
   </div>
 </template>
 
+<script setup>
+import { ref, onMounted, computed } from 'vue';
 
-  
-<script>
-  import axios from 'axios';
-  
-  export default {
-    data() {
-      return {
-        experiences: [],
-        showAll: false,
-      };
-    },
-    created() {
-      this.fetchexperiences();
-    },
-    computed: {
-      filteredexperiences() {
-        return this.showAll ? this.experiences : this.experiences.slice(0, 3);
-      }
-    },
-    methods: {
-      async fetchexperiences() {
-        console.log('VUE_APP_API_URL:', process.env.VUE_APP_API_URL);
+const experience = ref([]);
+const showAll = ref(false);
 
-        try {
-          // Use the environment variable for the base URL
-          const apiUrl = `${process.env.VUE_APP_API_URL}experience`;
-          const response = await axios.get(apiUrl);
-          this.experiences = response.data;
-        } catch (error) {
-          console.error('Error fetching experiences:', error);
-        }
-      }
-    }
-  };
+const fetchexperience = async () => {
+  try {
+    const response = await fetch('https://tommella-general-storage-83d44de1134b.herokuapp.com/apps/cv/experience/');
+    experience.value = await response.json();
+  } catch (error) {
+    console.error('Error fetching experience data:', error);
+  }
+};
+
+const filteredexperiences = computed(() => {
+  return showAll.value ? experience.value : experience.value.slice(0, 3);
+});
+
+const toggleShowAll = () => {
+  showAll.value = !showAll.value;
+};
+
+onMounted(fetchexperience);
 </script>
-  
 
-  <style scoped>
+<style scoped>
 .experience {
   margin: 0 10%;
   padding: 1em;
-  }
+}
   
 .experience-item {
-  display: flex; /* Create a flex container */
-  align-items: flex-start; /* Align items at the start (top-aligned) */
+  display: flex;
+  align-items: flex-start;
   margin-bottom: 1em;
 }
 
-/* Flex container for image and content */
 .experience-body {
-  display: flex; /* Horizontal alignment of child elements */
-  align-items: flex-start; /* Align items to the top */
-  gap: 1em; /* Space between the image and text */
-  margin-bottom: 1em; /* Space between experience items */
-  width: 100%; /* Ensure the container takes the full width */
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  margin-bottom: 1em;
+  width: 100%;
 }
 
 .experience-image {
-  width: 150px; /* Set a fixed width for the image */
-  height: 150px; /* Set a fixed height for the image box */
-  object-fit: cover; /* Crop the image to fit the box while maintaining aspect ratio */
-  border-radius: 4px; /* Optional: rounded corners */
-  border: 1px solid #ddd; /* Optional: border around the image */
-  flex-shrink: 0; /* Prevent the image from shrinking */
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  flex-shrink: 0;
 }
 
-/* Text Content Styling */
 .experience-content {
-  flex-grow: 1; /* Allow the text content to take remaining space */
+  flex-grow: 1;
   display: flex;
-  flex-direction: column; /* Stack the content vertically */
-  justify-content: flex-start; /* Align content to the top */
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-/* Header Styling */
 .experience-header {
-  margin-bottom: 0.5em; /* Space below the header */
+  margin-bottom: 0.5em;
 }
-
   
 .location {
   font-weight: bold;
 }
   
-/* Main title styling */
-/* Add list styles for descriptions */
 ul {
   list-style-type: disc;
   margin-left: 1em;
 }
 
-/* List item styling for experience entries */
 li {
   margin-bottom: 0.5em;
   padding: 0.5em;
@@ -139,7 +115,6 @@ li {
   text-align: left;
 }
 
-/* Sub-list styling for descriptions */
 li ul {
   list-style-type: disc;
   margin-left: 1em;
@@ -152,20 +127,17 @@ li ul li {
   padding: 0;
 }
 
-/* Sub-title styling */
 h2 {
   font-size: 1.4em;
   margin-bottom: 0.25em;
   text-align: left;
 }
 
-/* Paragraph styling */
 p {
   margin: 0.25em 0;
   text-align: left;
 }
 
-/* Button styling */
 button {
   margin-top: 0.5em;
   padding: 0.5em 1em;
