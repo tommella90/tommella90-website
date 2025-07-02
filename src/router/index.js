@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AboutMeView from '../components/AboutMeView.vue';
 import CVView from '../components/CVView.vue';
 import HomeView from '../components/HomeView.vue';
-import ProjectsHomeView from '../components/Projects/ProjectsHomeView.vue';
+import ArtHomeView from '@/components/Art/ArtHomeView.vue';
+import NerdyView from '@/components/Art/Categories/NerdyView.vue';
+import GeometricWorldsView from '@/components/Art/Categories/GeometricWorldsView.vue';
 
 const routes = [
     {
@@ -21,9 +23,19 @@ const routes = [
         component: AboutMeView,
     },
     {
-        path: '/projects',
-        name: 'Projects-View',
-        component: ProjectsHomeView,
+        path: '/art',
+        name: 'Art-View',
+        component: ArtHomeView,
+    },
+    {
+        path: '/art/nerdy',
+        name: 'Nerdy-View',
+        component: NerdyView,
+    },
+    {
+        path: '/art/geometric-worlds',
+        name: 'GeometricWorlds-View',
+        component: GeometricWorldsView,
     }
 ];
 
