@@ -47,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    fetch('http://tommella-general-storage-83d44de1134b.herokuapp.com/apps/art/artwork/')
+    fetch('https://tommella-general-storage-83d44de1134b.herokuapp.com/apps/art/artwork/')
       .then(response => response.json())
       .then(data => {
         this.images = data.filter(image => image.category === 'geometric_worlds');
