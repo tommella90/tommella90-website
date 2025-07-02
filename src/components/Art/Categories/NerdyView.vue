@@ -119,4 +119,29 @@ h1 {
   display: block;
   margin: auto;
 }
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8em;
+    margin-top: 60px;
+  }
+
+  .art-grid {
+    padding: 20px;
+    gap: 16px;
+    flex-direction: column; /* stack cards vertically on small screens */
+    align-items: center;
+  }
+
+  .art-card {
+    width: 90%; /* almost full width on small devices */
+  }
+
+  .art-image {
+    height: auto; /* let height scale with width */
+    max-height: 300px; /* max height so images don't get too big */
+  }
+}
+
 </style>

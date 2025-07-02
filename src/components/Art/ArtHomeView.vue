@@ -45,8 +45,8 @@ export default {
   },
 	data() {
 	return {
-		nerdyImage: 'https://tommella-website-storage.s3.eu-central-003.backblazeb2.com/art/geometric-worlds/rainbowHole.jpeg',
-		geometricImage: 'https://tommella-website-storage.s3.eu-central-003.backblazeb2.com/art/nerdy/headache.jpeg'
+		geometricImage: 'https://tommella-website-storage.s3.eu-central-003.backblazeb2.com/art/geometric-worlds/rainbowHole.jpeg',
+		nerdyImage: 'https://tommella-website-storage.s3.eu-central-003.backblazeb2.com/art/nerdy/headache.jpeg'
 	};
 	}
 }
