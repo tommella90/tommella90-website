@@ -13,7 +13,7 @@
           </div>
           <div class="experience-content">
             <div class="experience-header">
-              <h2>{{ experience.title }} - {{ experience.institution }}</h2>
+              <h2>{{ experience.title }} - {{ experience.company }}</h2>
               <p>
                 <span class="location">{{ experience.location }}</span> - 
                 {{ experience.start_date }} - {{ experience.end_date || 'Present' }}

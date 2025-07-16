@@ -21,6 +21,7 @@
             <li>Stata</li>
             <li>SQL</li>
             <li>Git</li>
+            <li>Touchdesigner</li>
         </ul>
     </div>
 </template>
